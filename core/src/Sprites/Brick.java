@@ -5,6 +5,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 import com.stackoverflowtrio.orbit.Orbit;
+import Scenes.HUD;
 
 public class Brick extends InteractiveTileObject{
 	public Brick(World world, TiledMap map, Rectangle bounds) {
@@ -18,5 +19,6 @@ public class Brick extends InteractiveTileObject{
 		Gdx.app.log("Brick", "Collision");
 		setCategoryFilter(Orbit.DESTROYED_BIT);
 		getCell().setTile(null);
+		HUD.addScore(200);
 	}
 }

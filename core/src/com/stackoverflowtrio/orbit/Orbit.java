@@ -11,11 +11,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import Screens.MainMenuScreen;
 import Screens.PlayScreen;
+import Screens.SettingsScreen;
 
 public class Orbit extends Game {
 	//Virtual Screen size and Box2D Scale(Pixels Per Meter)
 	public static final int V_WIDTH = 400;
-	public static final int V_HEIGHT = 208;
+	public static final int V_HEIGHT = 200;
 	public static final float PPM = 100;
 
 	//Box2D Collision Bits
@@ -37,6 +38,7 @@ public class Orbit extends Game {
 	private float musicVol = (float) 0.5;
 	private PlayScreen playScreen;
 	private MainMenuScreen menuScreen;
+	private SettingsScreen settingsScreen;
 	@Override
 	public void create () {
 		
@@ -68,6 +70,11 @@ public class Orbit extends Game {
 		case 1:
 			if(playScreen == null) playScreen = new PlayScreen(this);
 						this.setScreen(playScreen);
+			break;
+		case 2:
+			if(settingsScreen == null) settingsScreen = new SettingsScreen(this);
+			this.setScreen(settingsScreen);
+			break;
 		
 	}
 }

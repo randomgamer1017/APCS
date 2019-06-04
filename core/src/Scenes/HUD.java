@@ -19,7 +19,8 @@ public class HUD implements Disposable{
 	private Integer worldTimer;
 	private float timerCount;
 	private Integer health;
-	private Integer fuel; 
+	private static Integer fuel; 
+	
 	private float weapon1;
 	private float weapon2;
 	private float inventory1;
@@ -37,8 +38,17 @@ public class HUD implements Disposable{
 	Label countdownLabel;
 	Label worldLabel;
 	Label characterNameLabel;
+	
+	Label healthText;
+	Label healthLabel;
+	Label fuelText;
+	static Label fuelLabel;
+	
+	Label weapon1Text;
 	Label weapon1Label;
+	Label weapon2Text;
 	Label weapon2Label;
+	
 	Label inventory1Label;
 	Label inventory2Label;
 	Label inventory3Label;
@@ -67,8 +77,15 @@ public class HUD implements Disposable{
 		characterNameLabel = new Label("Unknown", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 		countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 		
-		weapon1Label = new Label("Primary", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-		weapon2Label = new Label("Secondary", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+		healthText = new Label("Health", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+		healthLabel = new Label(String.format("%03d", health), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+		fuelText = new Label("Fuel", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+		fuelLabel = new Label(String.format("%03d", fuel), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+		
+		weapon1Text = new Label("Primary", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+		weapon1Label = new Label("SMG", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+		weapon2Text = new Label("Secondary", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+		weapon2Label = new Label("Pistol", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 		
 		inventory1Label = new Label("Item 1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 		inventory2Label = new Label("Item 2", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -86,6 +103,18 @@ public class HUD implements Disposable{
 		table.add(worldLabel).expandX();
 		table.add(characterNameLabel).expandX();
 		table.add(countdownLabel).expandX();
+		table.row();
+		table.add(weapon1Label).expandX();
+		table.add(weapon2Label).expandX();
+		table.row();
+		table.add(weapon1Text).expandX();
+		table.add(weapon2Text).expandX();
+		table.row();
+		table.add(healthText).expandX();
+		table.add(fuelText).expandX();
+		table.row();
+		table.add(healthLabel).expandX();
+		table.add(fuelLabel).expandX();
 		
 		stage.addActor(table);
 	}
@@ -99,8 +128,9 @@ public class HUD implements Disposable{
 		}
 	}
 	
-	public void addScore(int value) {
-		
+	public static void addScore(int value) {
+		fuel += value;
+		fuelLabel.setText(String.format("%03d", fuel));
 	}
 	
 	public void dispose() {

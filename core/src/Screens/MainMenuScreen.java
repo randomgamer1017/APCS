@@ -69,7 +69,12 @@ public class MainMenuScreen implements Screen {
 				games.changeScreen(1);
 			 }
 		 });
-		 //settings.addListener
+		 settings.addListener(new ChangeListener() {
+			 @Override
+			 public void changed(ChangeEvent event, Actor actor) {
+				 games.changeScreen(2);
+			 }
+		 });
 		 
 	}
 	
@@ -81,7 +86,7 @@ public class MainMenuScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		
+		Gdx.input.setInputProcessor(stage);
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
