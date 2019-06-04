@@ -61,7 +61,7 @@ public class PlayScreen implements Screen{
 		hud = new HUD(game.batch);
 		
 		maploader = new TmxMapLoader();
-		map = maploader.load("level1.tmx");
+		map = maploader.load("New Text Document.tmx");
 		renderer = new OrthogonalTiledMapRenderer(map, 1 / Orbit.PPM);
 		
 		gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
@@ -98,6 +98,8 @@ public class PlayScreen implements Screen{
 		
 		world.step(1/60f, 6, 2);
 		
+		player.update(dt);
+		
 		gamecam.position.x = player.b2body.getPosition().x;
 		
 		gamecam.update();
@@ -112,12 +114,18 @@ public class PlayScreen implements Screen{
 	@Override
 	public void render(float delta) {
 		update(delta);
+		
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		renderer.render();
 		
 		b2dr.render(world, gamecam.combined);
+		
+		game.batch.setProjectionMatrix(gamecam.combined);
+		game.batch.begin();
+		player.draw(game.batch);
+		game.batch.end();
 		
 		game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
 		hud.stage.draw();
