@@ -50,9 +50,8 @@ public class Mario extends Sprite {
 		}
 		marioJump = new Animation(0.1f, frames);
 		
-		marioStand = new TextureRegion(getTexture(), 0, 0, 16, 16);
-		
 		defineMario();
+		marioStand = new TextureRegion(getTexture(), 0, 0, 16, 16);
 		setBounds(0, 0, 16 / Orbit.PPM, 16 / Orbit.PPM);
 		setRegion(marioStand);
 	}
